@@ -23,16 +23,20 @@
 //!
 //! ### Direct write mode
 //! ```rust
+//! use std::convert::Infallible;
 //! use st7567s::{
 //!     display::{DirectWriteMode, ST7567S},
 //!     interface::{I2CDisplayInterface, I2CInterface},
 //! };
 //! struct I2CStub;
-//! impl embedded_hal::blocking::i2c::Write for I2CStub {
-//!     type Error = ();
-//!     fn write(&mut self, _addr: u8, _buf: &[u8]) -> Result<(), ()> {
+//! impl embedded_hal::i2c::ErrorType for I2CStub {
+//!     type Error = Infallible;
+//! }
+//! impl embedded_hal::i2c::I2c for I2CStub {
+//!     fn write(&mut self, _addr: u8, _buf: &[u8]) -> Result<(), Infallible> {
 //!         Ok(())
 //!     }
+//!     fn transaction(&mut self, _: u8, _: &mut [embedded_hal::i2c::Operation<'_>]) -> Result<(), Infallible> { todo!() }
 //! }
 //!
 //! let i2c = I2CStub;
@@ -49,6 +53,7 @@
 //!
 //! ### Buffered mode + embedded_graphics
 //! ```rust
+//! use std::convert::Infallible;
 //! use st7567s::{
 //!     display::{BufferedMode, ST7567S},
 //!     interface::{I2CDisplayInterface, I2CInterface},
@@ -60,11 +65,14 @@
 //!     text::{Baseline, Text},
 //! };
 //! struct I2CStub;
-//! impl embedded_hal::blocking::i2c::Write for I2CStub {
-//!     type Error = ();
-//!     fn write(&mut self, _addr: u8, _buf: &[u8]) -> Result<(), ()> {
+//! impl embedded_hal::i2c::ErrorType for I2CStub {
+//!     type Error = Infallible;
+//! }
+//! impl embedded_hal::i2c::I2c for I2CStub {
+//!     fn write(&mut self, _addr: u8, _buf: &[u8]) -> Result<(), Infallible> {
 //!         Ok(())
 //!     }
+//!     fn transaction(&mut self, _: u8, _: &mut [embedded_hal::i2c::Operation<'_>]) -> Result<(), Infallible> { todo!() }
 //! }
 //!
 //! let i2c = I2CStub;

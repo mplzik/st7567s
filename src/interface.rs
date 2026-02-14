@@ -9,7 +9,7 @@ impl I2CDisplayInterface {
     /// Create a new I2CInterface for the ST7567S display
     pub fn new<I2C>(i2c: I2C) -> I2CInterface<I2C>
     where
-        I2C: embedded_hal::blocking::i2c::Write,
+        I2C: embedded_hal::i2c::I2c,
     {
         I2CInterface::new(i2c, 0x3f, 0x40)
     }

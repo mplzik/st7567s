@@ -13,13 +13,13 @@ repository = "https://github.com/kattouf/st7567s"
 exclude = ["doc"]
 
 [dependencies]
-embedded-hal = "0.2.6"
-embedded-graphics-core = { version = "0.3.3", optional = true }
-display-interface = "0.4.1"
-display-interface-i2c = "0.4.0"
+embedded-hal = "1.0.0"
+embedded-graphics-core = { version = "0.4.0", optional = true }
+display-interface = "0.5.0"
+display-interface-i2c = "0.5.0"
 
 [dev-dependencies]
-embedded-graphics = "0.7.1"
+embedded-graphics = "0.8.1"
 
 [features]
 default = ["graphics"]
